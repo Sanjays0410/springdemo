@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+      http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/aop
+      http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+      
+      
+      <context:annotation-config/>
+      <context:component-scan base-package="com.cruds.*"></context:component-scan>
+         
+           
+      <bean id="dataSource" 
+ class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+ <property name="driverClassName" 
+				value="com.mysql.jdbc.Driver"/>
+ <property name="url" value="jdbc:mysql://localhost:3306/cit"/>
+  <property name="username" value="root"/>
+  <property name="password" value="dummy"/>
+   </bean>
+   
+   
+   
+  <!--  this is for department -->
+   <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+   <property name="dataSource" ref="dataSource"/>
+   </bean>
+   
+   <bean id="jdbctemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+   <property name="dataSource" ref="dataSource"/>
+   </bean>
+   
+  
+   <bean id="userDAOImpl" class="com.cruds.db.UserDAOImpl">
+   <property name="jdbctemplate" ref="jdbctemplate"></property>
+   </bean>  
+   
+    <!--  <bean id="departmentDAOImpl" class="com.cruds.db.DepartmentDAOImpl">
+   <property name="jdbcTemplate" ref="jdbcTemplate"></property>
+   </bean> 
+      
+      <bean id="hellobean" class="com.cruds.demo.Hellobean">
+      
+      <property name="msg" value="Welcome to Spring demo"/>
+      </bean>
+      
+  <bean id="sRSTransport" class="com.cruds.demo.SRSTransport"/> 
+<bean id="vRLTransport" class="com.cruds.demo.VRLTransport"/> // here we can write autowire-candidate="false "
+
+// autowire candidate can be used to give false
+
+<bean id="vechileServiceProvider" class="com.cruds.demo.VechileServiceProvider" autowire="byName">
+<property name="vp">
+<ref bean="sRSTransport"/>
+</property>
+</bean>
+
+<bean id="user" class="com.cruds.demo.User">
+
+<constructor-arg value="sanjay"></constructor-arg>
+<constructor-arg value="22"></constructor-arg>
+<constructor-arg value="India"></constructor-arg>
+
+
+
+</bean>
+
+<bean id="user" class="com.cruds.demo.User">
+<property name="name" value="Sanjay"></property>
+<property name="age" value="22"></property>
+<property name="country" value="India"></property>
+</bean>
+
+<bean id="author" class="com.cruds.demo.Author">
+<property name="name" value="sada"></property>
+<property name="email" value="sada@123"></property>
+
+</bean>
+ 
+<bean id="book" class="com.cruds.demo.Book" autowire="byType">
+<property name="isbn" value="001"></property>
+<property name="title" value="java"></property>
+<property name="price" value="2500"></property>
+<property name="author">
+<ref bean="author"/>
+</property>
+</bean> -->
+
+</beans>
